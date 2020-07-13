@@ -1,0 +1,9 @@
+---
+# tasks file for tomcat
+- include: "{{item}}"
+  with_items:
+       - install.yml
+       - configure.yml
+       - service.yml
+
+
