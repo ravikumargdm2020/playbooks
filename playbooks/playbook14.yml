@@ -1,0 +1,11 @@
+---
+- hosts: webserver
+  tasks:
+          - name: ubuntu container
+            docker_container:
+                    image: ubuntu
+                    name: u1
+                    volumes:
+                            /data
+                    interactive: yes
+                    tty: yes        

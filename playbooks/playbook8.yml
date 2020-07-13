@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  tasks: 
+   - name: uninstall git
+     apt:
+            name: git
+            state: absent
+            purge: yes
+     register: a
+   - name: display opt
+     debug:
+             var: a 

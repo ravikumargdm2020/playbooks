@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+   - name: install tomcat
+     apt:
+         name: tomcat8
+         state: present
+         update_cache: yes
+   - name: copy tomcat-user.xml
+     copy:
+      src: /tomcat-users.xml
+      dest: /etc/tomcat8
+   - name: change tomcat port 
+     replace: 
+         regexp: 8080
+         replace: 9090
+         path: /etc/tomcat8/server.xml
+   - name: Restart tomcat8
+     service:
+             name: tomcat8
+             state: restarted
+   - name: url checking
+     uri:
+             url: http://172.31.36.35:9090

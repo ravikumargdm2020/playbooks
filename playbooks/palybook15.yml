@@ -1,0 +1,18 @@
+---
+- hosts: webserver
+  tasks:
+          - name: mysql cont
+            docker_container:
+                    image: mysql:5
+                    name: mydb
+                    env:
+                            MYSQL_ROOT_PASSWORD: ravi
+          - name: mysql cont
+            docker_container:
+                    image: wordpress
+                    name: wps
+                    ports: 
+                     - 9999:8080
+                    links:
+                            - mydb:mysql       
+                  

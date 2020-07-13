@@ -1,0 +1,10 @@
+---
+- hosts: webserver
+  tasks:
+   - name: push image from docker
+     docker_image:
+             name: "{{item}}"
+     with_items:
+            - postgres
+            - tomcat
+            - alpine

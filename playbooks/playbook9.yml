@@ -1,0 +1,17 @@
+---
+- hosts: webserver
+  tasks:
+          - name: check if d dir is not present
+            stat:
+                    path: /home/ubuntu/d
+            register: results
+          - name: displaying output
+            debug:
+                    var: results
+          - name: create dir if not present
+            file:
+               name: /home/ubuntu/d
+               state: directory
+            when:
+               results.stat.exists == false          
+

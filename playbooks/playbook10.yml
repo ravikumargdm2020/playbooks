@@ -1,0 +1,19 @@
+---
+- hosts: webserver
+  tasks: 
+   - name: check user
+     user:
+             name: ravi
+     register: results
+   - name: display o/p
+     debug: 
+      var: results
+   - name: set passwd
+     user:
+             name: ravi
+             password: xyz
+     when:
+             results.changed == false
+
+
+

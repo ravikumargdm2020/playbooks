@@ -1,0 +1,15 @@
+---
+- hosts: webserver
+  tasks:
+   - name: install docker using pip
+     apt:
+             name: python-pip
+             state: present
+   - name: docker installation
+     shell: "{{item}}"
+     with_items:
+             - pip install docker-py
+             - curl -fsSL https://get.docker.com -o get-docker.sh
+             - sh get-docker.sh
+
+           

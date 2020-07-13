@@ -1,0 +1,22 @@
+---
+- hosts: webserver
+  tasks:
+           - name: ci-cd cont
+             docker_container:
+                    image: jenkins
+                    name: dev-server
+                    ports:
+                     - 9909:8080
+           - name: tomcat qa and prod
+             docker_container:
+                   image: tomcat
+                   name: "{{item.a}}"
+                   ports: 
+                           - "{{item.b}}"
+                   links:
+                           - dev-server:jenkins
+             with_items:
+                   - {a: qaserver,b: "6060:8080"}
+                   - {a: prodserver,b: "7070:8080"}   
+                             
+

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars: 
+        - a: git
+        - b: present
+        - c: no
+  tasks: 
+    - name: install sowatwars
+      apt:
+       name: "{{a}}"
+       state: "{{b}}"
+       update_cache: "{{c}}"      

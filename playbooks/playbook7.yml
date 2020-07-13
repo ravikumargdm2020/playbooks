@@ -1,0 +1,19 @@
+---
+- hosts: webserver
+  tasks:
+   - name: install apache2
+     apt:
+              name: apache2
+              state: present
+   - name: edit index file
+     copy:
+             content: "intelloq\n"
+             dest: /var/www/html/index.html
+     notify: Restart apache2
+  handlers:
+   - name: Restart apache2
+     service: 
+              name: apache2
+              state: restarted
+
+

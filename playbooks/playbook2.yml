@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks: 
+   - name: install packages
+     apt: 
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+             
+
+

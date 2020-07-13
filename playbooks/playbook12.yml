@@ -1,0 +1,18 @@
+---
+- hosts: webserver
+  tasks:
+          - name: install tomacat ct
+            docker_container:
+                    image: tomcat
+                    name: mytomcat
+          - name: pause
+            pause: 
+             seconds: 5
+          - name: stop tomcat
+            docker_container:
+                    name: mytomcat
+                    state: stopped
+          - name: del tomcat
+            docker_container:
+                    name: mytomcat
+                    state: absent
